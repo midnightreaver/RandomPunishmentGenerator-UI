@@ -34,8 +34,8 @@ public class ManageList extends JFrame implements ActionListener {
         btnDeleteP.addActionListener(this);
 
         btnMainMenu = new JButton("Main Menu");
-        btnDeleteP.setBounds(300, 365, 200, 50);
-        btnDeleteP.addActionListener(this);
+        btnMainMenu.setBounds(300, 365, 200, 50);
+        btnMainMenu.addActionListener(this);
 
         // frame window
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -46,6 +46,7 @@ public class ManageList extends JFrame implements ActionListener {
         this.add(btnListP);
         this.add(btnAddP);
         this.add(btnDeleteP);
+        this.add(btnMainMenu);
         this.setTitle("Random Punishment Generator");
         this.setIconImage(icon.getImage());
         this.setLocationRelativeTo(null);
