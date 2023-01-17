@@ -90,8 +90,8 @@ public class ListDelete extends JFrame implements ActionListener, ItemListener {
             int index = cbDeletePunishments.getSelectedIndex();
             int level = Integer.parseInt(String.valueOf(cbDeleteLevels.getSelectedItem()));
             h2.deleteRecord(records.get(index).getId());
-            new ListDelete();
             this.dispose();
+            new ListDelete();
         } else if (e.getSource() == btnBack) {
             new MainMenu();
             this.dispose();
