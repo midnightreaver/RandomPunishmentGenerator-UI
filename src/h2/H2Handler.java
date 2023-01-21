@@ -56,25 +56,11 @@ public class H2Handler {
 
             // Execute query to create table
             statement = connection.createStatement();
-            String sql = """
-                    CREATE TABLE IF NOT EXISTS punishments (
-                      id INTEGER not NULL AUTO_INCREMENT,
-                      level INTEGER not NULL,
-                      text VARCHAR(255) not NULL,
-                      PRIMARY KEY (id))
-                    """;
+            String sql = "CREATE TABLE IF NOT EXISTS punishments (id INTEGER not NULL AUTO_INCREMENT, level INTEGER not NULL, text VARCHAR(255) not NULL, PRIMARY KEY (id))";
 
-            String sql2 = """
-                    CREATE TABLE IF NOT EXISTS config (
-                      id INTEGER not NULL AUTO_INCREMENT,
-                      param VARCHAR(255) NOT NULL,
-                      val VARCHAR(255),
-                      PRIMARY KEY (id))
-                    """;
+            String sql2 = "CREATE TABLE IF NOT EXISTS config (id INTEGER not NULL AUTO_INCREMENT, param VARCHAR(255) NOT NULL, val VARCHAR(255), PRIMARY KEY (id))";
 
-            String sql3 = """
-                    INSERT INTO config (param) VALUES ('set_level');
-                    """;
+            String sql3 = "INSERT INTO config (param) VALUES ('set_level');";
             statement.executeUpdate(sql);
             statement.executeUpdate(sql2);
             statement.executeUpdate(sql3);

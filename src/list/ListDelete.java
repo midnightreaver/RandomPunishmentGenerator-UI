@@ -15,14 +15,15 @@ import java.util.ArrayList;
  * @version 1.0
  * @since 1.0
  */
-public class ListDelete extends JFrame implements ActionListener, ItemListener {
+public class ListDelete extends JFrame implements ActionListener {
 
-    JComboBox cbDeleteLevels;
-    JComboBox cbDeletePunishments;
+    JComboBox<Object> cbDeleteLevels;
+    JComboBox<Object> cbDeletePunishments;
 
     ArrayList<Record> records;
 
-    JButton btnDelete;
+    //JButton btnDelete;
+    JButton btnContinue;
     JButton btnBack;
 
     DefaultListCellRenderer listRenderer;
@@ -36,31 +37,35 @@ public class ListDelete extends JFrame implements ActionListener, ItemListener {
         int max_level = h2.getSavedLevel();
 
         cbDeleteLevels = new JComboBox<>();
-
+        
         for (int i = 1; i <= max_level; i++) {
             cbDeleteLevels.addItem(String.valueOf(i));
         }
 
         cbDeleteLevels.setBounds(250, 200, 300, 25);
-        cbDeleteLevels.addItemListener(this);
+        //cbDeleteLevels.addItemListener(this);
         listRenderer = new DefaultListCellRenderer();
         listRenderer.setHorizontalAlignment(DefaultListCellRenderer.CENTER); // center-align items
         cbDeleteLevels.setRenderer(listRenderer);
 
-        cbDeletePunishments = new JComboBox<>();
-        cbDeletePunishments.setBounds(250, 230, 300, 25);
+//        cbDeletePunishments = new JComboBox<>();
+//        cbDeletePunishments.setBounds(250, 230, 300, 25);
+//
+//        // Initialize list with Level 1
+//        records = h2.getRecordsByLevel(1);
+//
+//        for (Record record : records) {
+//            String text = record.getText();
+//            cbDeletePunishments.addItem(String.valueOf(text));
+//        }
 
-        // Initialize list with Level 1
-        records = h2.getRecordsByLevel(1);
-
-        for (Record record : records) {
-            String text = record.getText();
-            cbDeletePunishments.addItem(String.valueOf(text));
-        }
-
-        btnDelete = new JButton("Delete");
-        btnDelete.setBounds(300, 260, 200, 50);
-        btnDelete.addActionListener(this);
+//        btnDelete = new JButton("Delete");
+//        btnDelete.setBounds(300, 260, 200, 50);
+//        btnDelete.addActionListener(this);
+        
+        btnContinue = new JButton("Continue");
+        btnContinue.setBounds(300, 260, 200, 50);
+        btnContinue.addActionListener(this);
 
         btnBack = new JButton("Back");
         btnBack.setBounds(300, 320, 200, 50);
@@ -73,8 +78,9 @@ public class ListDelete extends JFrame implements ActionListener, ItemListener {
         this.setVisible(true);
         this.setLayout(null);
         this.add(cbDeleteLevels);
-        this.add(cbDeletePunishments);
-        this.add(btnDelete);
+        //this.add(cbDeletePunishments);
+        //this.add(btnDelete);
+        this.add(btnContinue);
         this.add(btnBack);
         this.setTitle("Random Punishment Generator");
         this.setIconImage(icon.getImage());
@@ -83,34 +89,67 @@ public class ListDelete extends JFrame implements ActionListener, ItemListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
-        if (e.getSource() == btnDelete) {
-
-            H2Handler h2 = new H2Handler();
-            int index = cbDeletePunishments.getSelectedIndex();
-            int level = Integer.parseInt(String.valueOf(cbDeleteLevels.getSelectedItem()));
-            h2.deleteRecord(records.get(index).getId());
-            this.dispose();
-            new ListDelete();
-        } else if (e.getSource() == btnBack) {
-            new MainMenu();
-            this.dispose();
-        }
+    	
+    	if (e.getSource() == btnBack) {
+    		this.dispose();
+    		new MainMenu();
+    	} else if (e.getSource() == btnContinue) {
+    		this.dispose();
+    		new ListDeleteSelect(Integer.parseInt(String.valueOf(cbDeleteLevels.getSelectedItem())));
+    	}
+    	
+//        if (e.getSource() == btnDelete) {
+//
+//        	if (cbDeletePunishments.getItemCount() > 0 && cbDeletePunishments.getItemAt(0) != "" && cbDeletePunishments.getItemAt(0) != null) {
+//        		H2Handler h2 = new H2Handler();
+//                int index = cbDeletePunishments.getSelectedIndex();
+//                int level = Integer.parseInt(String.valueOf(cbDeleteLevels.getSelectedItem()));
+//                int recordId = records.get(index).getId();
+//                h2.deleteRecord(recordId);
+//                records.remove(index);
+//                
+//        	}
+//        	
+//            
+//            //cbDeletePunishments.removeAllItems();
+//            //ArrayList<Record> tmpRecords = h2.getRecordsByLevel(level);
+//        	
+////            for (Record record : tmpRecords) {
+////                String text = record.getText();
+////                cbDeletePunishments.addItem(String.valueOf(text));
+////            }
+//            //cbDeletePunishments.validate();
+//            //cbDeletePunishments.repaint();
+//            this.dispose();
+//            new ListDelete();
+//        } else if (e.getSource() == btnBack) {
+//            new MainMenu();
+//            this.dispose();
+//        }
     }
 
-    @Override
-    public void itemStateChanged(ItemEvent e) {
-
-        if (e.getStateChange() == ItemEvent.SELECTED) {
-            cbDeletePunishments.removeAllItems();
-            int level = Integer.parseInt(String.valueOf(cbDeleteLevels.getSelectedItem()));
-            H2Handler h2 = new H2Handler();
-            ArrayList<Record> tmpRecords = h2.getRecordsByLevel(level);
-
-            for (Record record : tmpRecords) {
-                String text = record.getText();
-                cbDeletePunishments.addItem(String.valueOf(text));
-            }
-        }
-    }
+//    @Override
+//    public void itemStateChanged(ItemEvent e) {
+//    	
+//    	if (e.getSource() == cbDeleteLevels) {
+//    		
+//    		if (e.getStateChange() == ItemEvent.SELECTED) {
+//    			if (String.valueOf(cbDeleteLevels.getSelectedItem()) != "") {
+//	    			cbDeletePunishments.removeAllItems();
+//		            int level = Integer.parseInt(String.valueOf(cbDeleteLevels.getSelectedItem()));
+//		            H2Handler h2 = new H2Handler();
+//		            ArrayList<Record> tmpRecords = h2.getRecordsByLevel(level);
+//		
+//		            for (Record record : tmpRecords) {
+//		                String text = record.getText();
+//		                cbDeletePunishments.addItem(String.valueOf(text));
+//		            }
+//		            cbDeletePunishments.validate();
+//		            cbDeletePunishments.repaint();
+//    			}
+//	       } else { // cbDeleteLevels == ""
+//	    	   //cbDeletePunishments.removeAllItems();
+//	       }
+//    	}
+//    }
 }
