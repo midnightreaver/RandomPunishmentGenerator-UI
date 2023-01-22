@@ -15,6 +15,12 @@ import javax.swing.SwingConstants;
 import h2.H2Handler;
 import list.data.Record;
 
+/** Second step of delete punishment process
+ * @author MidnightReaver
+ * @version 1.2
+ * @since 1.2
+ */
+
 public class ListDeleteSelect extends JFrame implements ActionListener {
 	
 	JComboBox<Object> cbDeletePunishments;
@@ -90,8 +96,6 @@ public class ListDeleteSelect extends JFrame implements ActionListener {
 		    String text = record.getText();
 		    cbDeletePunishments.addItem(String.valueOf(text));
 		}
-		
-		//System.out.println("Item count: " + cbDeletePunishments.getItemCount());
 		
 		lblDeleteNotice = new JLabel("'" + deletedText + "' has been deleted.", SwingConstants.CENTER);
 		lblDeleteNotice.setBounds(100, 230, 600, 25);

@@ -1,5 +1,10 @@
 package list.data;
 
+/** Custom data class for management of records/punishments
+ * @author MidnightReaver
+ * @version 1.0
+ * @since 1.0
+ */
 public class Record {
 
     private int id;
