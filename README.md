@@ -1,6 +1,9 @@
 # RandomPunishmentGenerator-UI
 User Interface version of RandomPunishmentGenerator implemented in Java Swing
 
+# User Guide
+To learn more about how the tool works, visit the [User Guide Wiki](https://github.com/midnightreaver/RandomPunishmentGenerator-UI/wiki)
+
 ## READ FIRST
 - This program requires [downloading and installing the Java Runtime Environment (JRE)](https://www.java.com/en/download/)
 - **The `JAVA_HOME` environment variable pointing to your Java Runtime Environment (JRE) install is required for this program to function.**
